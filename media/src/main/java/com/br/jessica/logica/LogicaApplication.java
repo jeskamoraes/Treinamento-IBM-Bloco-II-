@@ -14,7 +14,7 @@ import com.br.jessica.models.Student;
 public class LogicaApplication {
 
 	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	private static List<Student> students = new ArrayList<>();
+	//private static List<Student> students = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException, NumberFormatException, InterruptedException {
 		
@@ -60,13 +60,13 @@ public class LogicaApplication {
 	}
 
 	private static void showStudents() throws InterruptedException {
-		if(students.size() == 0){
+		if(Student.getAllStudents().size() == 0){
 			message("Nenhum aluno cadastrado!");
 			return;
 		}
 		
 		System.out.println("------ Relatório de alunos ------");
-		for(Student student: students) {
+		for(Student student: Student.getAllStudents()) {
 			System.out.println("Nome: " + student.getNome());
 			String notes = "";
 			for(float note: student.getNotas()) {
@@ -89,7 +89,8 @@ public class LogicaApplication {
 
 		captureStudentGrades(student);
 
-		students.add(student);
+		//students.add(student);
+		student.save();
 
 		message("Aluno cadastrado com sucesso!");
 	}
